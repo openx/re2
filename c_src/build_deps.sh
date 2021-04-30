@@ -3,12 +3,12 @@ set -e
 
 test `basename $PWD` != "c_src" && cd c_src
 
-case "$(uname -o)" in
-    Msys*|Cygwin*)
+IS_WINDOWS=no
+
+case "$(uname -s)" in
+    CYGWIN*|MINGW*)
         IS_WINDOWS=yes
         ;;
-    *)
-        IS_WINDOWS=no;;
 esac
 
 case "$1" in
@@ -29,7 +29,7 @@ case "$1" in
         fi
         test -f re2/$LIBRE2 && exit 0
 
-        RE2_REV=${RE2_REV:-2019-03-01}
+        RE2_REV=${RE2_REV:-2021-02-02}
         case $(git config --get remote.origin.url) in
             git@github.com*|https://github.com*|git://github.com*)
                 RE2_DEFAULT_URL=https://github.com/google/re2
@@ -67,8 +67,8 @@ case "$1" in
                 cp $LIB $LIBRE2
             )
         else
-            CXXFLAGS="-Wall -O3 -fPIC -pthread -std=c++11 -m$ERLANG_ARCH"
-            CXX="${CXX:-c++} -m$ERLANG_ARCH"
+            CXXFLAGS="-Wall -O3 -fPIC -pthread -std=c++11"
+            CXX="${CXX:-c++}"
             type gmake 1>/dev/null 2>/dev/null && MAKE=gmake
             MAKE=${MAKE:-make}
             MAKEFLAGS=${MAKEFLAGS:--j2}

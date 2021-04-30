@@ -1,8 +1,8 @@
-%% Copyright 2010-2019 Tuncer Ayaz
+%% Copyright 2010-2020 Tuncer Ayaz
 %% Use of this source code is governed by a BSD-style
 %% license that can be found in the LICENSE file.
 %%
-%% @doc Erlang NIF bindings for the
+%% @doc Erlang NIF bindings for
 %% <a href="https://github.com/google/re2">RE2</a> regex library
 
 -module(re2).
